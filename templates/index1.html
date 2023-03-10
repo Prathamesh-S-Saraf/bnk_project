@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<div style="background-color: DeepSkyBlue";
+            "margin: 30px; padding: 30px";>
+<html>
+  <head>
+    <h1>Offer Status Prediction</h1>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: center;
+      margin: 0;
+      font-size: 36px;
+      color: #fff;
+      z-index: 2;
+      }
+      span.required {
+      color: red;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 30px 0 #095484; 
+      }
+      .banner {
+      position: relative;
+      height: 180px;
+      background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.business-standard.com%2Farticle%2Ffinance%2Ffincen-files-almost-all-indian-banks-named-for-suspicious-transactions-120092100455_1.html&psig=AOvVaw0clmjfX6k0Sy189mFttOhm&ust=1678181856072000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJCop92Ax_0CFQAAAAAdAAAAABAE");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.4); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      p.top-info {
+      margin: 10px 0;
+      }
+      input, select {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      .item:hover p, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #095484;
+      }
+      .item input:hover, .item select:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 5px 0 #095484;
+      color: #095484;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .question input {
+      width: auto;
+      margin: 0;
+      border-radius: 50%;
+      }
+      .question input, .question span {
+      vertical-align: middle;
+      }
+      .question label {
+      display: inline-block;
+      margin: 5px 20px 15px 0;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input, .city-item input {
+      width: calc(50% - 20px);
+      }
+      .city-item select {
+      width: calc(50% - 8px);
+      }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="testbox">
+      <form action="/predict" method="POST">
+        
+        
+
+
+        
+      
+      <p>job<span class="required">*</span></p>
+          <select name = 'job'>
+                <option value="4">management</option>
+                <option value="9">technician</option>
+                <option value="11">unknown</option>
+                <option value="1">blue-collar</option>
+                <option value="2">enterpreneur</option>
+                <option value="5">retired</option>
+                <option value="0">admin</option>
+                <option value="7">services</option>
+                <option value="6">self-employed</option>
+                <option value="10">unemployed</option>
+                <option value="3">housemade</option>
+                <option value="8">student</option>
+                   
+          </select>
+        
+          
+      <p>marital<span class="required">*</span></p>
+          <select name = 'marital'>
+                <option value="0">married</option>
+                <option value="1">single</option>
+                <option value="2">divorced</option>
+
+          </select>
+        
+        
+      <p>education<span class="required">*</span></p>
+          <select name = 'education'>
+              <option value="0">unknown</option>
+              <option value="1">primary</option>
+              <option value="2">secondary</option>
+              <option value="3">tertiary</option>
+
+        </select>
+
+
+      <p>housing<span class="required">*</span></p>
+          <div class="question-answer">
+            <label><input type="radio" value='0' name="housing" required/> <span>no</span></label>
+            <label><input type="radio" value="1" name="housing" required/> <span>yes</span></label>
+            
+        </div>
+
+      <p>default<span class="required">*</span></p>
+          <select name = 'default'>
+                <option value="0">no</option>
+                <option value="1">yes</option>
+                
+                
+        </select>
+
+          
+         
+          
+       <p>loan<span class="required">*</span></p>
+          <select name = 'loan'>
+                <option value="0">no</option>
+                <option value="1">yes</option>
+           
+        </select>
+            
+
+
+
+          <div class="item">
+            <label> campaign</label>
+          <input type="text" name="campaign" placeholder="campaign" required/>
+          
+          </div>
+
+          <div class="item">
+            <label> previous</label>
+          <input type="text" name="previous" placeholder="previous" required/>
+          
+          </div>
+
+        <p>previous_outcome<span class="required">*</span></p>
+            <select name = 'previous_outcome'>
+              <option value="0">failure</option>
+              <option value="1">success</option>
+              <option value="2">other</option>
+              <option value="3">unknown</option>
+
+          </select>
+
+          <div class="btn-block">
+          <button type="submit">Customet will subscribe or NOT </button>
+        </div>
+
+        {{ Offer_status_result }}
+      </form>
+    </div>
+  </body>
+</html>
